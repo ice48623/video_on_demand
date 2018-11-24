@@ -1,0 +1,12 @@
+[submodule "vod_like_worker"]
+	path = vod_like_worker
+	url = git@github.com:ice48623/vod_like_worker.git
+[submodule "vod_webapi"]
+	path = vod_webapi
+	url = git@github.com:ice48623/vod_webapi.git
+[submodule "vod_comment_worker"]
+	path = vod_comment_worker
+	url = git@github.com:ice48623/vod_comment_worker.git
+[submodule "vod_frontend"]
+	path = vod_frontend
+	url = git@github.com:ice48623/vod_frontend.git
