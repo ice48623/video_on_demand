@@ -10,3 +10,6 @@
 [submodule "vod_frontend"]
 	path = vod_frontend
 	url = git@github.com:ice48623/vod_frontend.git
+[submodule "vod_swagger"]
+	path = vod_swagger
+	url = git@github.com:ice48623/vod_swagger.git
