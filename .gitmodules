@@ -13,3 +13,6 @@
 [submodule "vod_swagger"]
 	path = vod_swagger
 	url = git@github.com:ice48623/vod_swagger.git
+[submodule "vod_converter"]
+	path = vod_converter
+	url = https://github.com/ice48623/vod_converter
