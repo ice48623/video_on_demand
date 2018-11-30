@@ -1,0 +1,68 @@
+version: '3.7'
+
+x-env: &common-env
+  MONGO_URL: mongo
+  MONGO_PORT: 27017
+  RABBIT_HOST: rabbitmq
+  RABBIT_PORT: 5672
+
+x-depends-on: &common-depends-on
+  - 'rabbitmq'
+  - 'mongo'
+
+x-wait-for: &wait-for
+  ["./wait-for", "rabbitmq:5672", "--", "./main.py"]
+
+x-videos-volume: &videos-volume
+  ./videos:/app/videos
+
+services:
+  rabbitmq:
+    image: rabbitmq:3.7-alpine
+    ports:
+      - 5672:5672
+
+  mongo:
+    image: mongo:3.2
+    ports:
+      - 27017:27017
+
+  comment-worker:
+    build: vod_comment_worker
+    restart: on-failure
+    environment:
+      <<: *common-env
+    depends_on:
+      *common-depends-on
+    command: *wait-for
+
+  like-worker:
+    build: vod_like_worker
+    restart: on-failure
+    environment:
+      <<: *common-env
+    depends_on:
+      *common-depends-on
+    command: *wait-for
+
+  converter:
+    build: vod_converter
+    restart: on-failure
+    environment:
+      <<: *common-env
+    depends_on:
+      *common-depends-on
+    command: *wait-for
+    volumes:
+      - *videos-volume
+
+  webapi:
+    build: vod_webapi
+    environment:
+      <<: *common-env
+    depends_on:
+      *common-depends-on
+    ports:
+      - "5000:5000"
+    volumes:
+      - *videos-volume
