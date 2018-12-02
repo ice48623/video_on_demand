@@ -16,3 +16,6 @@
 [submodule "vod_converter"]
 	path = vod_converter
 	url = https://github.com/ice48623/vod_converter
+[submodule "vod_module"]
+	path = vod_module
+	url = git@github.com:ice48623/vod_module.git
