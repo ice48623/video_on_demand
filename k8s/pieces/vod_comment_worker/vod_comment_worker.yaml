@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: vod_comment_worker-deployment
+    labels:
+      app: vod_comment_worker
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: vod_comment_worker
+    template:
+      metadata:
+        labels:
+          app: vod_comment_worker
+      spec:
+        containers:
+        - name: vod_comment_worker
+          image: vod_comment_worker
+          imagePullPolicy: Never
+          env:
+          - name: MONGO_URL
+            value: mongo
+          - name: MONGO_PORT
+            value: 27017
+          - name: RABBIT_HOST
+            value: rabbit
+          - name: RABBIT_PORT
+            value: 5672

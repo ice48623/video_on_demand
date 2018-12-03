@@ -66,3 +66,24 @@ services:
       - "5000:5000"
     volumes:
       - *videos-volume
+
+  frontend:
+    build: ./vod_frontend
+    restart: unless-stopped
+    ports:
+      - 8080:8080
+    depends_on:
+      - webapi
+    environment:
+      - NODE_ENV=production
+
+  vod_module:
+    build: ./vod_module
+    restart: unless-stopped
+    ports:
+      - 4000:4000
+    volumes:
+      - ./videos:/opt/static/videos
+
+volumes:
+  videos:

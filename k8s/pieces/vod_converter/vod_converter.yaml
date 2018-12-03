@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: List
+items:
+- apiVersion: apps/v1
+  kind: Deployment
+  metadata:
+    name: vod_converter-deployment
+    labels:
+      app: vod_converter
+  spec:
+    replicas: 1
+    selector:
+      matchLabels:
+        app: vod_converter
+    template:
+      metadata:
+        labels:
+          app: vod_converter
+      spec:
+        containers:
+        - name: vod_converter
+          image: vod_converter
+          imagePullPolicy: Never
+          env:
+          - name: MONGO_URL
+            value: mongo
+          - name: MONGO_PORT
+            value: 27017
+          - name: RABBIT_HOST
+            value: rabbit
+          - name: RABBIT_PORT
+            value: 5672
