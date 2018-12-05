@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 
-PIECES="rabbit vod_module vod_frontend vod_webapi vod_converter vod_like_worker vod_comment_worker nginx"
+PIECES="rabbit vod-module vod-frontend vod-webapi vod-converter vod-like-worker vod-comment-worker nginx mongo"
 
 COMMAND="create"
 FROM="--from-file=main_proxy.conf --from-file=nginx.conf"
-VOD_MODULE="--from-file=vod_module.conf"
+MODULE="--from-file=vod_module.conf --from-file=nginx.conf"
 
 if ! type "kubectl" > /dev/null; then
 	echo "Requires kubectl in PATH"
@@ -21,7 +21,7 @@ while getopts :d opt; do
 done
 
 kubectl $COMMAND configmap nginx-config $FROM
-kubectl $COMMAND configmap vod-module-config $VOD_MODULE
+kubectl $COMMAND configmap module-config $FROM
 
 for PIECE in $PIECES; do
 	for CONFIG in $(find ./pieces/$PIECE/*.yaml 2> /dev/null); do

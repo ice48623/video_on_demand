@@ -4,29 +4,29 @@ items:
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
-    name: vod_converter-deployment
+    name: vod-like-worker-deployment
     labels:
-      app: vod_converter
+      app: vod-like-worker
   spec:
     replicas: 1
     selector:
       matchLabels:
-        app: vod_converter
+        app: vod-like-worker
     template:
       metadata:
         labels:
-          app: vod_converter
+          app: vod-like-worker
       spec:
         containers:
-        - name: vod_converter
-          image: vod_converter
+        - name: vod-like-worker
+          image: vod-like-worker
           imagePullPolicy: Never
           env:
           - name: MONGO_URL
-            value: mongo
+            value: mongodb
           - name: MONGO_PORT
-            value: 27017
+            value: "27017"
           - name: RABBIT_HOST
             value: rabbit
           - name: RABBIT_PORT
-            value: 5672
+            value: "5672"

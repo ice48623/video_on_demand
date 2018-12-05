@@ -4,43 +4,43 @@ items:
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
-    name: vod_webapi-deployment
+    name: vod-webapi-deployment
     labels:
-      app: vod_webapi
+      app: vod-webapi
   spec:
     replicas: 1
     selector:
       matchLabels:
-        app: vod_webapi
+        app: vod-webapi
     template:
       metadata:
         labels:
-          app: vod_webapi
+          app: vod-webapi
       spec:
         containers:
-        - name: vod_webapi
-          image: vod_webapi
+        - name: vod-webapi
+          image: vod-webapi
           imagePullPolicy: Never
           env:
           - name: MONGO_URL
-            value: mongo
+            value: mongodb
           - name: MONGO_PORT
-            value: 27017
+            value: "27017"
           - name: RABBIT_HOST
             value: rabbit
           - name: RABBIT_PORT
-            value: 5672
+            value: "5672"
           ports:
           - containerPort: 5000
 - apiVersion: v1
   kind: Service
   metadata:
-    name: vod_webapi
+    name: vod-webapi
   spec:
     selector:
-      app: vod_webapi
+      app: vod-webapi
     ports:
-    - name: vod_webapi
+    - name: vod-webapi
       protocol: TCP
       port: 5000
       targetPort: 5000

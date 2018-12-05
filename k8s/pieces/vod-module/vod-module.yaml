@@ -4,41 +4,45 @@ items:
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
-    name: vod_module-deployment
+    name: module-deployment
   spec:
     selector:
       matchLabels:
-        app: vod_module
+        app: module
     replicas: 1
     template:
       metadata:
         labels:
-          app: vod_module
+          app: module
       spec:
         containers:
-        - name: vod_module
-          image: vod_module
+        - name: module
+          image: vod-module
+          imagePullPolicy: Never
           ports:
-          - containerPort: 4000
+          - containerPort: 31000
           volumeMounts:
-          - name: vod-module-config
+          - name: module-config
             mountPath: /etc/nginx/conf.d/vod_module.conf
             subPath: vod_module.conf
+          - name: module-config
+            mountPath: /etc/nginx/nginx.conf
+            subPath: nginx.conf
         volumes:
-          - name: vod-module-config
+          - name: module-config
             configMap:
-              name: vod-module-config
+              name: module-config
 - apiVersion: v1
   kind: Service
   metadata:
-    name: vod_module
+    name: module
   spec:
     selector:
-      app: vod_module
+      app: module
     type: NodePort
     ports:
-    - name: vod_module
+    - name: module
       protocol: TCP
-      port: 4000
-      nodePort: 4000
-      targetPort: 4000
+      port: 31000
+      nodePort: 31000
+      targetPort: 31000

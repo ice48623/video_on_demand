@@ -4,34 +4,35 @@ items:
 - apiVersion: apps/v1
   kind: Deployment
   metadata:
-    name: vod_frontend-deployment
+    name: vod-frontend-deployment
     labels:
-      app: vod_frontend
+      app: vod-frontend
   spec:
     replicas: 1
     selector:
       matchLabels:
-        app: vod_frontend
+        app: vod-frontend
     template:
       metadata:
         labels:
-          app: vod_frontend
+          app: vod-frontend
       spec:
         containers:
-        - name: vod_frontend
-          image: vod_frontend
+        - name: vod-frontend
+          image: vod-frontend
           imagePullPolicy: Never
           ports:
           - containerPort: 8080
 - apiVersion: v1
   kind: Service
   metadata:
-    name: vod_frontend
+    name: vod-frontend
   spec:
     selector:
-      app: vod_frontend
+      app: vod-frontend
+    type: NodePort
     ports:
-    - name: vod_frontend
+    - name: vod-frontend
       protocol: TCP
       port: 8080
       targetPort: 8080
