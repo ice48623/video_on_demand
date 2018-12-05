@@ -33,6 +33,8 @@ items:
             value: rabbit
           - name: RABBIT_PORT
             value: "5672"
+          - name: BASE_VIDEOS_FOLDER
+            value: "./videos"
         volumes:
         - name: nfsvol-2
           persistentVolumeClaim:

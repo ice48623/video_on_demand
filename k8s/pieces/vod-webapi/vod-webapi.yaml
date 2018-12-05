@@ -35,6 +35,8 @@ items:
             value: "5672"
           - name: BASE_URL
             value: "vod.thanaphat.me:30000"
+          - name: BASE_VIDEOS_FOLDER
+            value: "./videos"
           ports:
           - containerPort: 5000
         volumes:
