@@ -22,16 +22,19 @@ items:
           ports:
           - containerPort: 31000
           volumeMounts:
+          - name: nfsvol-3
+            mountPath: /opt/static/videos
+          volumeMounts:
           - name: module-config
             mountPath: /etc/nginx/conf.d/vod_module.conf
             subPath: vod_module.conf
-          - name: module-config
-            mountPath: /etc/nginx/nginx.conf
-            subPath: nginx.conf
         volumes:
-          - name: module-config
-            configMap:
-              name: module-config
+        - name: nfsvol-3
+          persistentVolumeClaim:
+            claimName: nfs-pvc
+        - name: module-config
+          configMap:
+            name: module-config
 - apiVersion: v1
   kind: Service
   metadata:

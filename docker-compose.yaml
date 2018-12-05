@@ -81,9 +81,10 @@ services:
     build: ./vod_module
     restart: unless-stopped
     ports:
-      - 4000:4000
+      - 31000:31000
     volumes:
       - ./videos:/opt/static/videos
+      - ./vod_module/nginx.conf:/usr/local/nginx/conf/nginx.conf
 
 volumes:
   videos:

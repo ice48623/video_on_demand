@@ -4,7 +4,7 @@ PIECES="rabbit vod-module vod-frontend vod-webapi vod-converter vod-like-worker 
 
 COMMAND="create"
 FROM="--from-file=main_proxy.conf --from-file=nginx.conf"
-MODULE="--from-file=vod_module.conf --from-file=nginx.conf"
+MODULE="--from-file=vod_module.conf"
 
 if ! type "kubectl" > /dev/null; then
 	echo "Requires kubectl in PATH"
@@ -21,7 +21,7 @@ while getopts :d opt; do
 done
 
 kubectl $COMMAND configmap nginx-config $FROM
-kubectl $COMMAND configmap module-config $FROM
+kubectl $COMMAND configmap module-config $MODULE
 
 for PIECE in $PIECES; do
 	for CONFIG in $(find ./pieces/$PIECE/*.yaml 2> /dev/null); do
