@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-PIECES="rabbit vod-module vod-frontend vod-webapi vod-converter vod-like-worker vod-comment-worker nginx mongo"
+PIECES="rabbit vod-module vod-frontend vod-webapi vod-converter vod-like-worker vod-comment-worker nginx mongo nfs"
 
 COMMAND="create"
 FROM="--from-file=main_proxy.conf --from-file=nginx.conf"

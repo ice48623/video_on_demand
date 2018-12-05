@@ -21,6 +21,9 @@ items:
         - name: vod-converter
           image: vod-converter
           imagePullPolicy: Never
+          volumeMounts:
+          - name: nfsvol-2
+            mountPath: ./videos
           env:
           - name: MONGO_URL
             value: mongodb
@@ -30,3 +33,7 @@ items:
             value: rabbit
           - name: RABBIT_PORT
             value: "5672"
+        volumes:
+        - name: nfsvol-2
+          persistentVolumeClaim:
+            claimName: nfs-pvc

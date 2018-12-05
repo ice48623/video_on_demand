@@ -21,6 +21,9 @@ items:
         - name: vod-webapi
           image: vod-webapi
           imagePullPolicy: Never
+          volumeMounts:
+          - name: nfsvol
+            mountPath: ./videos
           env:
           - name: MONGO_URL
             value: mongodb
@@ -34,6 +37,10 @@ items:
             value: "vod.thanaphat.me:30000"
           ports:
           - containerPort: 5000
+        volumes:
+        - name: nfsvol
+          persistentVolumeClaim:
+            claimName: nfs-pvc
 - apiVersion: v1
   kind: Service
   metadata:
