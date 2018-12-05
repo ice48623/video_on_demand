@@ -23,7 +23,7 @@ items:
           imagePullPolicy: Never
           volumeMounts:
           - name: nfsvol
-            mountPath: ./videos
+            mountPath: /var/videos
           env:
           - name: MONGO_URL
             value: mongodb
@@ -36,7 +36,7 @@ items:
           - name: BASE_URL
             value: "vod.thanaphat.me:30000"
           - name: BASE_VIDEOS_FOLDER
-            value: "./videos"
+            value: "/var/videos"
           ports:
           - containerPort: 5000
         volumes:
