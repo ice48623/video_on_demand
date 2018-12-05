@@ -23,7 +23,7 @@ items:
           imagePullPolicy: Never
           volumeMounts:
           - name: nfsvol-2
-            mountPath: /var/videos
+            mountPath: /app/videos
           env:
           - name: MONGO_URL
             value: mongodb
@@ -34,7 +34,7 @@ items:
           - name: RABBIT_PORT
             value: "5672"
           - name: BASE_VIDEOS_FOLDER
-            value: "/var/videos"
+            value: "/app/videos"
         volumes:
         - name: nfsvol-2
           persistentVolumeClaim:
