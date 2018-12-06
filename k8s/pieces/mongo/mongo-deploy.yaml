@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  # This name uniquely identifies the Deployment
+  name: mongodb
+spec:
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      labels:
+        # Label is used as selector in the service.
+        app: mongodb
+    spec:
+      # Refer to the PVC created earlier
+      volumes:
+      - name: database
+        persistentVolumeClaim:
+          # Name of the PVC created earlier
+          claimName: mongodb
+      containers:
+      - name: mongodb
+        # Pulls the default Minio image from Docker Hub
+        image: mongo:3.2
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 27017
+        # Mount the volume into the pod
+        volumeMounts:
+        - name: database # must match the volume name, above
+          mountPath: "/database"
