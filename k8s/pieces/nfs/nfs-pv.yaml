@@ -7,8 +7,7 @@ spec:
     storage: 1Gi
   accessModes:
     - ReadWriteMany
-  persistentVolumeReclaimPolicy: Retain
   nfs:
-    path: /var/nfs/videos
-    server: http://vod-storage.thanaphat.me
+    server: 68.183.230.131
+    path: "/var/nfs/videos"
     readOnly: false
