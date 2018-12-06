@@ -1,13 +1,32 @@
+# apiVersion: v1
+# kind: PersistentVolume
+# metadata:
+#   name: nfs-pv
+# spec:
+#   capacity:
+#     storage: 1Gi
+#   accessModes:
+#     - ReadWriteMany
+#   nfs:
+#     server: 68.183.230.131
+#     path: "/var/nfs/videos"
+#     readOnly: false
+
 apiVersion: v1
 kind: PersistentVolume
 metadata:
   name: nfs-pv
 spec:
   capacity:
-    storage: 1Gi
+    storage: 5Gi
+  volumeMode: Filesystem
   accessModes:
     - ReadWriteMany
+  persistentVolumeReclaimPolicy: Recycle
+  storageClassName: slow
+  mountOptions:
+    - hard
+    - nfsvers=4.1
   nfs:
+    path: /var/nfs/videos
     server: 68.183.230.131
-    path: "/var/nfs/videos"
-    readOnly: false
