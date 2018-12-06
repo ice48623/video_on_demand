@@ -36,7 +36,7 @@ items:
           - name: BASE_VIDEOS_FOLDER
             value: "/app/videos"
           - name: BASE_VIDEO_URL
-            value: "vod.thanaphat.me:30000"
+            value: "http://vod.thanaphat.me:30000"
         volumes:
         - name: nfsvol-2
           persistentVolumeClaim:

@@ -34,7 +34,7 @@ items:
           - name: RABBIT_PORT
             value: "5672"
           - name: BASE_URL
-            value: "vod.thanaphat.me:30000"
+            value: "http://vod.thanaphat.me:30000"
           - name: BASE_VIDEOS_FOLDER
             value: "/app/videos"
           ports:

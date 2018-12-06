@@ -24,9 +24,9 @@ items:
           volumeMounts:
           - name: nfsvol-3
             mountPath: /opt/static/videos
-          volumeMounts:
           - name: module-config
-            mountPath: /etc/nginx/conf.d/vod_module.conf
+            # mountPath: /etc/nginx/conf.d/vod_module.conf
+            mountPath: /usr/local/nginx/conf/vod_module.conf
             subPath: vod_module.conf
         volumes:
         - name: nfsvol-3
