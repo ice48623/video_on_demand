@@ -19,8 +19,8 @@ items:
       spec:
         containers:
         - name: vod-comment-worker
-          image: vod-comment-worker
-          imagePullPolicy: Never
+          image: tui95/vod-comment-worker
+          imagePullPolicy: Always
           env:
           - name: MONGO_URL
             value: mongodb

@@ -17,8 +17,8 @@ items:
       spec:
         containers:
         - name: module
-          image: vod-module
-          imagePullPolicy: Never
+          image: tui95/vod-module
+          imagePullPolicy: Always
           ports:
           - containerPort: 31000
           volumeMounts:

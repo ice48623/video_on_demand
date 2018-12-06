@@ -19,8 +19,8 @@ items:
       spec:
         containers:
         - name: vod-converter
-          image: vod-converter
-          imagePullPolicy: Never
+          image: tui95/vod-converter
+          imagePullPolicy: Always
           volumeMounts:
           - name: nfsvol-2
             mountPath: /app/videos

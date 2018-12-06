@@ -19,8 +19,8 @@ items:
       spec:
         containers:
         - name: vod-webapi
-          image: vod-webapi
-          imagePullPolicy: Never
+          image: tui95/vod-webapi
+          imagePullPolicy: Always
           volumeMounts:
           - name: nfsvol
             mountPath: /app/videos

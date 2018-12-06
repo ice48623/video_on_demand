@@ -19,8 +19,8 @@ items:
       spec:
         containers:
         - name: vod-frontend
-          image: vod-frontend
-          imagePullPolicy: Never
+          image: tui95/vod-frontend
+          imagePullPolicy: Always
           ports:
           - containerPort: 8080
 - apiVersion: v1
